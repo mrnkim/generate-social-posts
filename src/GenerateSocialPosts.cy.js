@@ -1,6 +1,6 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GenerateTitlesAndHashtags } from "./GenerateTitlesAndHashtags";
+import { GenerateSocialPosts } from "./GenerateSocialPosts";
 
 describe("<GenerateTitlesAndHashtags />", () => {
   it("renders", () => {
@@ -9,7 +9,7 @@ describe("<GenerateTitlesAndHashtags />", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <QueryClientProvider client={queryClient}>
-        <GenerateTitlesAndHashtags />
+        <GenerateSocialPosts />
       </QueryClientProvider>
     );
   });

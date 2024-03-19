@@ -4,7 +4,7 @@ import { Video } from "./Video";
 import { InputForm } from "./InputForm";
 import { VideoFileUploadForm } from "./VideoFileUploadForm";
 import { Result } from "./Result";
-import "./GenerateTitlesAndHashtags.css";
+import "./GenerateSocialPosts.css";
 import { useGetVideo } from "./apiHooks";
 import keys from "./keys";
 import LoadingSpinner from "./LoadingSpinner";
@@ -14,19 +14,19 @@ import greenWarningIcon from "./Warning_Green.svg";
 
 /** Generate Titles and Hashtags
  *
- * App -> GenerateTitlesAndHashtags -> {VideoFileUploadForm, Video, InputForm, Result}
+ * App -> GenerateSocialPosts -> {VideoFileUploadForm, Video, InputForm, Result}
  *
  */
 
-export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
+export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
   const { data: video, isLoading } = useGetVideo(
     index,
     videoId,
     Boolean(videoId)
   );
 
-  const [field1, field2, field3] = ["topic", "title", "hashtag"];
-  const [types, setTypes] = useState(new Set());
+  const [prompt, setPrompt] = useState("");
+  console.log("🚀 > GenerateSocialPosts > prompt=", prompt)
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
   const [showCheckWarning, setShowCheckWarning] = useState(false);
@@ -52,8 +52,8 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
     return cleanedFilename;
   }
 
-  async function resetTypes() {
-    setTypes(new Set());
+  async function resetPrompt() {
+    setPrompt("");
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
       });
     };
     fetchData();
-    resetTypes();
+    resetPrompt();
     setIsSubmitted(false);
     setShowVideoTitle(false);
     setShowCheckWarning(false);
@@ -72,9 +72,9 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
   }, [index, videoId, queryClient]);
 
   return (
-    <div className="GenerateTitlesAndHashtags">
-      <h1 className="GenerateTitlesAndHashtags__appTitle">
-        Generate Titles and Hashtags for Your Video
+    <div className="GenerateSocialPosts">
+      <h1 className="GenerateSocialPosts__appTitle">
+        Generate Social Posts for Your Video
       </h1>
       <VideoFileUploadForm
         index={index}
@@ -85,14 +85,14 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
         setIsFileUploading={setIsFileUploading}
       />
       {!video && (
-        <div className="GenerateTitlesAndHashtags__uploadMessageWrapper">
+        <div className="GenerateSocialPosts__uploadMessageWrapper">
           <img
-            className="GenerateTitlesAndHashtags__uploadMessageWrapper__warningIcon"
+            className="GenerateSocialPosts__uploadMessageWrapper__warningIcon"
             src={greenWarningIcon}
             alt="greenWarningIcon"
           ></img>
           <div>
-            <p className="GenerateTitlesAndHashtags__uploadMessageWrapper__message">
+            <p className="GenerateSocialPosts__uploadMessageWrapper__message">
               Please upload a video
             </p>
           </div>
@@ -111,18 +111,18 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
             )}
           </ErrorBoundary>
           {showVideoTitle && (
-            <div className="GenerateTitlesAndHashtags__videoTitle">
+            <div className="GenerateSocialPosts__videoTitle">
               {vidTitleClean}
             </div>
           )}
           {showCheckWarning && (
-            <div className="GenerateTitlesAndHashtags__warningMessageWrapper">
+            <div className="GenerateSocialPosts__warningMessageWrapper">
               <img
-                className="GenerateTitlesAndHashtags__warningMessageWrapper__warningIcon"
+                className="GenerateSocialPosts__warningMessageWrapper__warningIcon"
                 src={WarningIcon}
                 alt="WarningIcon"
               ></img>
-              <div className="GenerateTitlesAndHashtags__warningMessageWrapper__warningMessage">
+              <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
                 Please select one of the checkboxes
               </div>
             </div>
@@ -130,17 +130,15 @@ export function GenerateTitlesAndHashtags({ index, videoId, refetchVideos }) {
           {video && (
             <InputForm
               video={video}
-              field1={field1}
-              field2={field2}
-              field3={field3}
               setIsSubmitted={setIsSubmitted}
               setShowVideoTitle={setShowVideoTitle}
               setShowCheckWarning={setShowCheckWarning}
-              types={types}
+              prompt={prompt}
+              setPrompt={setPrompt}
             />
           )}
           {video && (
-            <Result video={video} isSubmitted={isSubmitted} types={types} />
+            <Result video={video} isSubmitted={isSubmitted} prompt={prompt} />
           )}
         </>
       )}
