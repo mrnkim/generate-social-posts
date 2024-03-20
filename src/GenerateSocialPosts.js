@@ -26,7 +26,7 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
   );
 
   const [prompt, setPrompt] = useState("");
-  console.log("🚀 > GenerateSocialPosts > prompt=", prompt)
+  console.log("🚀 > GenerateSocialPosts > prompt=", prompt);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
   const [showCheckWarning, setShowCheckWarning] = useState(false);

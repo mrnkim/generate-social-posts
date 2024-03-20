@@ -49,17 +49,20 @@ export function useGetVideo(indexId, videoId, enabled) {
   });
 }
 
-export function useGenerateTitleTopicHashtag(types, videoId, enabled) {
+export function useGenerate(prompt, videoId, enabled) {
   return useQuery({
-    queryKey: [keys.VIDEOS, "gist", videoId],
+    queryKey: [keys.VIDEOS, "generate", videoId],
     queryFn: async () => {
       if (!enabled) {
         return null;
       }
 
-      const response = await apiConfig.SERVER.post(`/videos/${videoId}/gist`, {
-        data: { types: Array.from(types) },
-      });
+      const response = await apiConfig.SERVER.post(
+        `/videos/${videoId}/generate`,
+        {
+          data: { prompt: prompt },
+        }
+      );
       const respData = response.data;
       return respData;
     },

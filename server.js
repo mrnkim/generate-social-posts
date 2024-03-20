@@ -96,22 +96,23 @@ app.get(
 );
 
 /** Generate gist of a video */
-app.post("/videos/:videoId/gist", async (request, response, next) => {
+app.post("/videos/:videoId/generate", async (request, response, next) => {
   const videoId = request.params.videoId;
-  let types = request.body.data;
+  let prompt = request.body.data;
   try {
     const options = {
       method: "POST",
-      url: `${API_BASE_URL}/gist`,
+      url: `${API_BASE_URL}/generate`,
       headers: { ...HEADERS, accept: "application/json" },
-      data: { ...types, video_id: videoId },
+      data: { ...prompt, video_id: videoId },
     };
+    console.log("🚀 > app.post > options=", options)
     const apiResponse = await axios.request(options);
     response.json(apiResponse.data);
   } catch (error) {
     const status = error.response?.status || 500;
     const message =
-      error.response?.data?.message || "Error Summarizing a Video";
+      error.response?.data?.message || "Error Generating Text";
     return next({ status, message });
   }
 });
