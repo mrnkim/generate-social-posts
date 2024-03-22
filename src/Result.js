@@ -35,8 +35,8 @@ export function Result({ video, isSubmitted, prompt }) {
         {!isLoading && !isFetching && result && (
           <>
             {" "}
-            <div className="resultTitle">Generated post</div>
-            <div>{result?.data}</div>
+            <div className="result__resultTitle">Generated post</div>
+            <div className="result__resultData">{result?.data}</div>
           </>
         )}
         {(isLoading || isFetching) && <LoadingSpinner />}

@@ -4,11 +4,16 @@
     text-align: center;
 }
 
-.result__title, .result__topics, .result__hashtags {
-    margin-top: 60px;
+.result__resultTitle {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.result__title__title, .result__topics__title, .result__hashtags__title {
+.result__title {
     font-size: 32px;
     font-weight: 500;
     line-height: 44px;
@@ -17,62 +22,7 @@
     margin-bottom: 60px;
 }
 
-.result__hashtags__hashtags {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-}
 
-.result__hashtags__hashtag {
-    padding: 6px 12px 6px 12px;
-    border-radius: 40px;
-    background: #FFFFFF;
-    color: #171717;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0px;
-}
 
-/* .result__chapters__wrapper__chapter, .result__highlights__wrapper__highlight {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 
-.result__chapters__wrapper__chapter__wrapper, .result__highlights__wrapper__highlight__timeSummary {
-    margin-left: 10px;
-    width: 1000px;
-    text-align: left;
-}
 
-.result__chapters__wrapper__chapter__wrapper__summary, .result__highlights__wrapper__highlight__timeSummary__summary {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0px;
-    text-align: left;
-    }
-
-.result__chapters__wrapper__chapter__wrapper_titleTime {
-    display: flex;
-    justify-content: space-between;
-}
-
-.result__chapters__wrapper__chapter__wrapper_titleTime_title, .result__highlights__wrapper__timeWrapper {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-}
-
-.result__chapters__wrapper__chapter__wrapper_titleTime_time, .result__highlights__wrapper__highlight__timeSummary__time {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #FF0099;
-} */

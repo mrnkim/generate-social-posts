@@ -43,12 +43,19 @@ export function InputForm({
 
   return (
     <div className="inputForm">
-      <div className="title">What social post do you want to generate?</div>
-      <form className="form">
-        <div>
-          <textarea type="text" id="prompt" name="prompt" ref={textAreaRef} />
-        </div>
-        <button className="generateButton" onClick={handleSubmit}>
+      <div className="inputForm__title">
+        Tell Me What social post you want to generate
+      </div>
+      <form className="inputForm__form">
+        <textarea
+          className="inputForm__form__textarea"
+          type="text"
+          id="prompt"
+          name="prompt"
+          placeholder="Write a very short Instagram post with emojis"
+          ref={textAreaRef}
+        />
+        <button className="inputForm__form__button" onClick={handleSubmit}>
           Generate
         </button>{" "}
       </form>
