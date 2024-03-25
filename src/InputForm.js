@@ -13,7 +13,6 @@ export function InputForm({
   setIsSubmitted,
   setShowVideoTitle,
   setShowCheckWarning,
-  prompt,
   setPrompt,
 }) {
   const queryClient = useQueryClient();
@@ -25,7 +24,6 @@ export function InputForm({
 
     if (textAreaRef && textAreaRef.current) {
       const inputValue = textAreaRef.current.value;
-
       if (inputValue.length > 0) {
         setPrompt(inputValue);
         setIsSubmitted(true);

@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 /** Shows the results
  *
- * GenerateTitlesAndHashtags -> Result
+ * GenerateSocialPosts -> Result
  *
  */
 

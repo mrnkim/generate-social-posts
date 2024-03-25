@@ -132,7 +132,6 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
               setIsSubmitted={setIsSubmitted}
               setShowVideoTitle={setShowVideoTitle}
               setShowCheckWarning={setShowCheckWarning}
-              prompt={prompt}
               setPrompt={setPrompt}
             />
           )}

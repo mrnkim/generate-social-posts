@@ -10,7 +10,7 @@ import keys from "./keys";
 
 /** Receive user's video file, submit it to API, and show task status
  *
- * GenerateTitlesAndHashtags -> {VideoFileUploadForm} -> Task
+ * GenerateSocialPosts -> {VideoFileUploadForm} -> Task
  *
  */
 
@@ -24,6 +24,7 @@ export function VideoFileUploadForm({
 }) {
   const [taskId, setTaskId] = useState(null);
   const [error, setError] = useState(null);
+
   const inputRef = useRef(null);
 
   const queryClient = useQueryClient();
@@ -71,7 +72,6 @@ export function VideoFileUploadForm({
         "video/ogg",
         "video/webm",
       ];
-
       if (allowedVideoTypes.includes(userSelectedFile.type)) {
         setSelectedFile(userSelectedFile);
         setInputRef(selectedFile?.name);

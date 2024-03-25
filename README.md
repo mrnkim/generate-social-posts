@@ -15,6 +15,7 @@ Use this app to effortlessly create social media posts of any type from short, f
 - [Twelve Labs API](https://docs.twelvelabs.io/docs)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React](https://react.dev/)
+- [React Player](https://www.npmjs.com/package/react-player)
 - [React Query](https://tanstack.com/query/latest)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
