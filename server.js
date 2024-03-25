@@ -106,7 +106,6 @@ app.post("/videos/:videoId/generate", async (request, response, next) => {
       headers: { ...HEADERS, accept: "application/json" },
       data: { ...prompt, video_id: videoId },
     };
-    console.log("🚀 > app.post > options=", options)
     const apiResponse = await axios.request(options);
     response.json(apiResponse.data);
   } catch (error) {
@@ -117,7 +116,7 @@ app.post("/videos/:videoId/generate", async (request, response, next) => {
   }
 });
 
-/** Index a Youtube video for analysis, returning a task ID */
+/** Index a video for analysis, returning a task ID */
 app.post(
   "/index",
   upload.single("video_file"),
@@ -152,7 +151,7 @@ app.post(
     } catch (error) {
       const status = error.response?.status || 500;
       const message =
-        error.response?.data?.message || "Error indexing a YouTube Video";
+        error.response?.data?.message || "Error indexing a Video";
       return next({ status, message });
     }
   }

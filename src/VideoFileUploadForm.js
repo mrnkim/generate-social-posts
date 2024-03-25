@@ -32,7 +32,7 @@ export function VideoFileUploadForm({
     inputRef.current = ref;
   };
 
-  /** Submit a Youtube video url for indexing  */
+  /** Submit a video for indexing  */
   async function indexVideo() {
     try {
       const form = new FormData();
@@ -120,7 +120,6 @@ export function VideoFileUploadForm({
             data-cy="data-cy-url-input"
             ref={setInputRef}
             onChange={handleFileSelect}
-            placeholder="https://www.youtube.com/"
             type="file"
             accept="video/*"
             name="video_file"
@@ -141,12 +140,7 @@ export function VideoFileUploadForm({
               <div className="videoFileUploadForm__taskWrapper__message">
                 {!taskId && "Submitting..."}
               </div>
-              {taskId && (
-                <Task
-                  taskId={taskId}
-                  refetchVideos={refetchVideos}
-                />
-              )}
+              {taskId && <Task taskId={taskId} setTaskId={setTaskId} refetchVideos={refetchVideos} />}
             </div>
           )}
         </Suspense>

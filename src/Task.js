@@ -12,13 +12,14 @@ import { Video } from "./Video";
  * VideoUrlUploadForm -> Task -> Video
  *
  */
-export function Task({ taskId, refetchVideos }) {
+export function Task({ taskId, setTaskId, refetchVideos }) {
   const { data: task } = useGetTask(taskId);
 
   const queryClient = useQueryClient();
 
   useEffect(() => {
     if (task && (task.status === "ready" || task.status === "failed")) {
+      setTaskId(null);
       refetchVideos();
     }
   }, [task, task?.status]);
@@ -31,19 +32,16 @@ export function Task({ taskId, refetchVideos }) {
 
   return (
     <div className="task">
-      {task && task.hls?.video_url && <LoadingSpinner />}
-      {!task && !task.hls?.thumbnail_urls && <LoadingSpinner />}
+      <div className="task__loadingSpinner">
+        <LoadingSpinner />
+      </div>
       <div className="task__status">
         {task && task.status ? `${task.status}...` : null}
       </div>
       <ErrorBoundary>
         {task && task.hls?.video_url && (
           <div className="task__video">
-            <Video
-              url={task.hls?.video_url}
-              width={"381px"}
-              height={"214px"}
-            />
+            <Video url={task.hls?.video_url} width={"381px"} height={"214px"} />
           </div>
         )}
         <Suspense fallback={<LoadingSpinner />}></Suspense>

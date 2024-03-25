@@ -44,7 +44,7 @@ export function InputForm({
   return (
     <div className="inputForm">
       <div className="inputForm__title">
-        Tell Me What social post you want to generate
+        Tell me what social post you want to generate
       </div>
       <form className="inputForm__form">
         <textarea
