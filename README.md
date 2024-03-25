@@ -1,13 +1,13 @@
 <a id="readme-top"></a>
 
-# Generate Titles and Hashtags for Your Video
+# Generate Social Posts for Your Video
 
 ## 👋 Introduction
 
-You can count on this app to whip up a snazzy topic, a catchy title, and some trending hashtags for any video you fancy. Whether you're a content creator always on the hunt for a killer video title and hashtags, this app's got you covered. It's a quick and easy way to get the job done in a matter of seconds!
+Use this app to effortlessly create social media posts of any type from short, fun Instagram updates to in-depth Medium blog posts loaded with details. As a video content creator, you may already have fantastic video content. With this app, you can swiftly transform it into written content suitable for various social media platforms!
 
 <div style="border: 1px solid black;">
-  <img src="public/generate-titles-hashtags-app.JPG" alt="app screenshot" />
+  <img src="public/Generate_Social_Posts.JPG" alt="app screenshot" />
 </div>
 
 ### Built With
@@ -15,7 +15,7 @@ You can count on this app to whip up a snazzy topic, a catchy title, and some tr
 - [Twelve Labs API](https://docs.twelvelabs.io/docs)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React](https://react.dev/)
-- [React Player](https://www.npmjs.com/package/react-player)
+- [React Query](https://tanstack.com/query/latest)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -24,7 +24,7 @@ You can count on this app to whip up a snazzy topic, a catchy title, and some tr
 ### Step 1. Clone the repo
 
 ```sh
-   git clone git@github.com:mrnkim/generate-titles-and-hashtags.git
+   git clone git@github.com:mrnkim/Generate-Social-Posts-for-Your-Video.git
 ```
 
 ### Step 2. Generate API Key & Create an Index
@@ -32,7 +32,7 @@ You can count on this app to whip up a snazzy topic, a catchy title, and some tr
 1. Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate your API Key
    - Once you sign up, you'll receive complimentary credits allowing you to index up to 10 hours of video content!
 2. [Create an index](https://docs.twelvelabs.io/reference/create-index) and save the index id
-   - Make sure to set  `engine_name` as `pegasus1` and `engine_options` as `visual`, `conversation`
+   - Make sure to set `engine_name` as `pegasus1` and `engine_options` as `visual`, `conversation`
    - index id looks something like `642c0581370f870fb3bb01be`
    - If you have already created index(es) before, retrieve the id(s) by making a [GET request to /indexes](https://docs.twelvelabs.io/reference/list-indexes)
 3. Create `.env` file at the root level and store/update the values of each key.
