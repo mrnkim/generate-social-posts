@@ -9,7 +9,15 @@ import "./Video.css";
  *
  */
 
-export function Video({ url, start, end, width, height }) {
+interface Props {
+  url: string;
+  start?: number;
+  end?: number;
+  width: string;
+  height: string;
+}
+
+const Video: React.FC<Props> = ({ url, start, end, width, height }) => {
   return (
     <div className="video" style={{ width: width, height: height }}>
       <ReactPlayer
@@ -22,3 +30,5 @@ export function Video({ url, start, end, width, height }) {
     </div>
   );
 }
+
+export default Video;
