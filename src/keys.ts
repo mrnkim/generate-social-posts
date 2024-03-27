@@ -1,4 +1,5 @@
-const keys = {
+// keys.ts
+export const keys = {
   INDEXES: "indexes",
   INDEX: "index",
   VIDEOS: "videos",
@@ -6,6 +7,6 @@ const keys = {
   TASK: "task",
   SEARCH: "search",
   AUTHORS: "authors",
-};
+} as const;
 
-export default keys;
+
