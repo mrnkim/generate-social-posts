@@ -1,7 +1,7 @@
-import { React, Suspense, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import keys from "./keys";
+import { keys } from "./keys";
 import LoadingSpinner from "./LoadingSpinner";
 import { useGetTask } from "./apiHooks";
 import "./Task.css";
