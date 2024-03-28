@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { keys } from "./keys";
@@ -16,11 +16,12 @@ import ErrorFallback from './ErrorFallback';
 
 interface TaskProps {
   taskId: string;
-  setTaskId: (taskId: string | null) => void;
+  setTaskId: Dispatch<SetStateAction<string | null>>;
   refetchVideos: () => void;
 }
 
-const Task:React.FC<TaskProps> = ({ taskId, setTaskId, refetchVideos }) => {
+
+export const Task:React.FC<TaskProps> = ({ taskId, setTaskId, refetchVideos }) => {
   const { data: task } = useGetTask(taskId);
 
   const queryClient = useQueryClient();

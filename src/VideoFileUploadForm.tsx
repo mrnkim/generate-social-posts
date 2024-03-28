@@ -1,3 +1,4 @@
+import React from 'react';
 import "./VideoFileUploadForm.css";
 import { useState, useRef, Suspense } from "react";
 import LoadingSpinner from "./LoadingSpinner";
@@ -6,13 +7,22 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Task } from "./Task";
 import { ErrorBoundary } from "./ErrorBoundary";
 import apiConfig from "./apiConfig";
-import keys from "./keys";
+import { keys } from "./keys";
 
 /** Receive user's video file, submit it to API, and show task status
  *
  * GenerateSocialPosts -> {VideoFileUploadForm} -> Task
  *
  */
+
+interface VideoFileUploadFormProps {
+  index: string;
+  refetchVideos: () => void;
+  selectedFile: File | null;
+  setSelectedFile: (file: File | null) => void;
+  isFileUploading: boolean;
+  setIsFileUploading: (isUploading: boolean) => void;
+}
 
 export function VideoFileUploadForm({
   index,
@@ -21,15 +31,15 @@ export function VideoFileUploadForm({
   setSelectedFile,
   isFileUploading,
   setIsFileUploading,
-}) {
-  const [taskId, setTaskId] = useState(null);
+}: VideoFileUploadFormProps) {
+  const [taskId, setTaskId] = useState<string | null>(null);
   const [error, setError] = useState(null);
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const queryClient = useQueryClient();
 
-  const setInputRef = (ref) => {
+  const setInputRef = (ref: HTMLInputElement | null) => {
     inputRef.current = ref;
   };
 
@@ -39,7 +49,7 @@ export function VideoFileUploadForm({
       const form = new FormData();
       form.append("language", "en");
       form.append("index_id", index);
-      form.append("video_file", selectedFile);
+      form.append("video_file", selectedFile as Blob);
       const response = await axios.post(
         apiConfig.INDEX_VIDEO_URL.toString(),
         form,
@@ -52,14 +62,14 @@ export function VideoFileUploadForm({
       );
       const taskId = response.data._id;
       setTaskId(taskId);
-    } catch (error) {
+    } catch (error: Error | any) {
       setError(error.message);
     }
   }
 
   /** Verify file type */
-  function handleFileSelect(event) {
-    let userSelectedFile = event.target.files[0];
+  function handleFileSelect(event: React.ChangeEvent<HTMLInputElement>) {
+    let userSelectedFile = event.target.files?.[0];
 
     if (userSelectedFile) {
       const allowedVideoTypes = [
@@ -74,16 +84,16 @@ export function VideoFileUploadForm({
       ];
       if (allowedVideoTypes.includes(userSelectedFile.type)) {
         setSelectedFile(userSelectedFile);
-        setInputRef(selectedFile?.name);
+        setInputRef(inputRef.current);
       } else {
         alert("Please select a valid video file (e.g., MP4, MPEG, QuickTime).");
-        setInputRef("");
+        setInputRef(null);
       }
     }
   }
 
   /** Get information of a video and set it as task */
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     if (selectedFile) {
       setIsFileUploading(true);
@@ -91,7 +101,7 @@ export function VideoFileUploadForm({
         queryKey: [keys.TASK, taskId],
       });
       try {
-        indexVideo();
+        await indexVideo();
       } catch (error) {
         console.error("Video upload error:", error);
       }
@@ -105,7 +115,7 @@ export function VideoFileUploadForm({
       )}
       {isFileUploading && (
         <div className="videoFileUploadForm__title">
-          Uploading "{selectedFile.name}"
+          Uploading "{selectedFile?.name}"
         </div>
       )}
       {!isFileUploading && (
@@ -127,8 +137,8 @@ export function VideoFileUploadForm({
           <button
             className="videoFileUploadForm__form__button"
             data-cy="data-cy-upload-button"
-            disabled={isFileUploading || inputRef.current?.value?.length < 1}
-          >
+            disabled={isFileUploading || !inputRef.current?.value || inputRef.current.value.length < 1}
+            >
             Upload
           </button>
         </form>
