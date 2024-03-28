@@ -70,7 +70,7 @@ export function useGenerate(prompt: string, videoId: string, enabled: boolean) {
 }
 
 export function useGetTask(taskId: string) {
-  return useQuery({
+  return useQuery<Task, Error, Task, [string, string]>({
     queryKey: [keys.TASK, taskId],
     queryFn: async (): Promise<Task> => {
       try {
@@ -82,7 +82,7 @@ export function useGetTask(taskId: string) {
         throw error;
       }
     },
-    refetchInterval: (query:Query<Task>) => {
+    refetchInterval: (query) => {
       const data = query.state.data;
       return data && (data.status === "ready" || data.status === "failed")
         ? false

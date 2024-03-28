@@ -5,14 +5,22 @@ import { keys } from "./keys";
 import LoadingSpinner from "./LoadingSpinner";
 import { useGetTask } from "./apiHooks";
 import "./Task.css";
-import { Video } from "./Video";
+import  Video  from "./Video";
+import ErrorFallback from './ErrorFallback';
 
 /** Gets and shows status of a task
  *
  * VideoUrlUploadForm -> Task -> Video
  *
  */
-export function Task({ taskId, setTaskId, refetchVideos }) {
+
+interface TaskProps {
+  taskId: string;
+  setTaskId: (taskId: string | null) => void;
+  refetchVideos: () => void;
+}
+
+const Task:React.FC<TaskProps> = ({ taskId, setTaskId, refetchVideos }) => {
   const { data: task } = useGetTask(taskId);
 
   const queryClient = useQueryClient();
@@ -38,7 +46,7 @@ export function Task({ taskId, setTaskId, refetchVideos }) {
       <div className="task__status">
         {task && task.status ? `${task.status}...` : null}
       </div>
-      <ErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         {task && task.hls?.video_url && (
           <div className="task__video">
             <Video url={task.hls?.video_url} width={"381px"} height={"214px"} />
