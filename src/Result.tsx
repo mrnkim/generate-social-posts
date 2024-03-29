@@ -1,10 +1,11 @@
-import { React, useEffect } from "react";
+import  React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import "./Result.css";
 import { useGenerate } from "./apiHooks";
-import keys from "./keys";
+import { keys } from "./keys";
 import { ErrorBoundary } from "./ErrorBoundary";
 import LoadingSpinner from "./LoadingSpinner";
+import { Video } from './types';
 
 /** Shows the results
  *
@@ -12,7 +13,13 @@ import LoadingSpinner from "./LoadingSpinner";
  *
  */
 
-export function Result({ video, isSubmitted, prompt }) {
+interface ResultProps {
+  video: Video
+  isSubmitted: boolean;
+  prompt: string;
+}
+
+export const Result: React.FC<ResultProps> = ({ video, isSubmitted, prompt }) => {
   const {
     data: result,
     isLoading,
@@ -26,7 +33,7 @@ export function Result({ video, isSubmitted, prompt }) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries([keys.VIDEOS, video?._id, "generate"]);
+    queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate"]});
   }, [prompt, video?._id]);
 
   return (
