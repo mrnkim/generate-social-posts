@@ -3,11 +3,12 @@ import { keys } from "./keys";
 import apiConfig from "./apiConfig";
 import { Task } from "./types"
 
-export function useGetVideos(indexId: string) {
+export function useGetVideos(indexId: string | undefined) {
   return useQuery({
     queryKey: [keys.VIDEOS, indexId],
     queryFn: async () => {
       try {
+        if (!indexId) return Error;
         const response = await apiConfig.SERVER.get(
           `${apiConfig.INDEXES_URL}/${indexId}/videos`,
           {

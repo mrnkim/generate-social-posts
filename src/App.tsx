@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { useEffect, Suspense } from "react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -15,15 +16,18 @@ import ErrorFallback from "./ErrorFallback";
  *
  */
 function App() {
-  const { data: videos, refetch: refetchVideos } = useGetVideos(
-    apiConfig.INDEX_ID
-  );
-
+  const { data: videos, refetch: refetchVideos } = useGetVideos(apiConfig.INDEX_ID);
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries([keys.VIDEOS, apiConfig.INDEX_ID]);
+    if (apiConfig.INDEX_ID) {
+      queryClient.invalidateQueries({queryKey: [keys.VIDEOS, apiConfig.INDEX_ID]});
+    }
   }, [apiConfig.INDEX_ID, queryClient]);
+
+  if (!apiConfig.INDEX_ID) {
+    return <ErrorFallback error={new Error("Please provide index Id")} />;
+  }
 
   return (
     <ErrorBoundary>
@@ -42,5 +46,6 @@ function App() {
     </ErrorBoundary>
   );
 }
+
 
 export default App;
