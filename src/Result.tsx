@@ -16,10 +16,11 @@ import { Video } from './types';
 interface ResultProps {
   video: Video
   isSubmitted: boolean;
+  setIsSubmitted: (value: boolean) => void;
   prompt: string;
 }
 
-export const Result: React.FC<ResultProps> = ({ video, isSubmitted, prompt }) => {
+export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitted, prompt }) => {
   const {
     data: result,
     isLoading,
@@ -34,7 +35,13 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, prompt }) =>
 
   useEffect(() => {
     queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate"]});
-  }, [prompt, video?._id]);
+  }, [prompt, video?._id, isSubmitted]);
+
+  useEffect(() => {
+    setIsSubmitted(false);
+  }
+
+  )
 
   return (
     <ErrorBoundary>

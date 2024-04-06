@@ -32,9 +32,10 @@ export const InputForm: React.FC<InputFormProps> = ({
   /** Receive and set user input */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setPrompt("");
 
     if (textAreaRef.current) {
-      const inputValue = textAreaRef.current.value;
+      const inputValue = textAreaRef.current.value.trim();
       if (inputValue.length > 0) {
         setPrompt(inputValue);
         setIsSubmitted(true);

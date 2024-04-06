@@ -143,7 +143,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
             />
           )}
           {video && (
-            <Result video={video} isSubmitted={isSubmitted} prompt={prompt} />
+            <Result video={video} isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} prompt={prompt} />
           )}
         </>
       )}
