@@ -1,6 +1,6 @@
 import React from "react";
 import "./ErrorFallback.css";
-const WarningIcon = require("./Warning.svg") as string;
+const WarningIcon:string = require("./Warning.svg").default;
 
 interface ErrorFallbackProps {
   error: Error | undefined;

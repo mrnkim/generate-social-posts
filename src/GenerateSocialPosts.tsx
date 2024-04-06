@@ -9,8 +9,9 @@ import { useGetVideo } from "./apiHooks";
 import { keys } from "./keys";
 import LoadingSpinner from "./LoadingSpinner";
 import { ErrorBoundary } from "./ErrorBoundary";
-const WarningIcon = require("./Warning.svg")
-const greenWarningIcon = require("./Warning_Green.svg")
+
+const WarningIcon:string = require("./Warning.svg").default;
+const greenWarningIcon:string = require("./Warning_Green.svg").default;
 
 /** Generate Titles and Hashtags
  *
@@ -35,7 +36,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
   const [showCheckWarning, setShowCheckWarning] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null); 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFileUploading, setIsFileUploading] = useState(false);
 
   const queryClient = useQueryClient();
@@ -128,7 +129,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
                 alt="WarningIcon"
               ></img>
               <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
-                Please select one of the checkboxes
+              Please provide the context for the text you'd like to generate
               </div>
             </div>
           )}
