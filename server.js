@@ -24,7 +24,7 @@ app.use(
 
 /** Define error handling middleware */
 const errorLogger = (error, request, response, next) => {
-  console.error(error.stack);
+  console.error(error);
   next(error);
 };
 

@@ -50,7 +50,11 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
           <>
             {" "}
             <div className="result__resultTitle">Generated post</div>
-            <div className="result__resultData">{result?.data}</div>
+            <div className="result__resultData">
+              {result.data.split("\n").map((paragraph:string, index:number) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+              </div>
           </>
         )}
         {(isLoading || isFetching) && <LoadingSpinner />}
