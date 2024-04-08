@@ -1,11 +1,11 @@
 import  React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import "./Result.css";
-import { useGenerate } from "./apiHooks";
-import { keys } from "./keys";
-import { ErrorBoundary } from "./ErrorBoundary";
-import LoadingSpinner from "./LoadingSpinner";
-import { Video } from './types';
+import { useGenerate } from "./common/apiHooks";
+import { keys } from "./common/keys";
+import { ErrorBoundary } from "./common/ErrorBoundary";
+import LoadingSpinner from "./common/LoadingSpinner";
+import { Video } from './common/types';
 
 /** Shows the results
  *

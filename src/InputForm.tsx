@@ -1,8 +1,8 @@
 import React, {useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import {keys} from './keys'
+import {keys} from './common/keys'
 import "./InputForm.css";
-import { Video } from './types';
+import { Video } from './common/types';
 
 
 /** Receive user's check prompt for the API call
