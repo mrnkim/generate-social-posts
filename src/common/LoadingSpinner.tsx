@@ -1,7 +1,8 @@
-import loadingSpinner from "./LoadingSpinner.svg";
+import React from "react";
 import "./LoadingSpinner.css";
+const loadingSpinner:string = require("./LoadingSpinner.svg").default;
 
-function LoadingSpinner() {
+const LoadingSpinner: React.FC = () => {
   return (
     <div className="loadingSpinner">
       <div className="loadingSpinner__wrapper">

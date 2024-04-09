@@ -1,16 +1,17 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Video } from "./Video";
+import  Video from "./Video";
 import { InputForm } from "./InputForm";
 import { VideoFileUploadForm } from "./VideoFileUploadForm";
 import { Result } from "./Result";
 import "./GenerateSocialPosts.css";
-import { useGetVideo } from "./apiHooks";
-import keys from "./keys";
-import LoadingSpinner from "./LoadingSpinner";
-import { ErrorBoundary } from "./ErrorBoundary";
-import WarningIcon from "./Warning.svg";
-import greenWarningIcon from "./Warning_Green.svg";
+import { useGetVideo } from "./common/apiHooks";
+import { keys } from "./common/keys";
+import LoadingSpinner from "./common/LoadingSpinner";
+import { ErrorBoundary } from "./common/ErrorBoundary";
+
+const WarningIcon:string = require("./common/Warning.svg").default;
+const greenWarningIcon:string = require("./common/Warning_Green.svg").default;
 
 /** Generate Titles and Hashtags
  *
@@ -18,7 +19,13 @@ import greenWarningIcon from "./Warning_Green.svg";
  *
  */
 
-export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
+interface GenerateSocialPostsProps {
+  index: string;
+  videoId: string;
+  refetchVideos: () => void;
+}
+
+export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, videoId, refetchVideos }) => {
   const { data: video, isLoading } = useGetVideo(
     index,
     videoId,
@@ -29,7 +36,7 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
   const [showCheckWarning, setShowCheckWarning] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFileUploading, setIsFileUploading] = useState(false);
 
   const queryClient = useQueryClient();
@@ -38,7 +45,7 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
   const vidTitleClean = decodeAndCleanFilename(vidTitleRaw);
 
   /** Return clean video file name  */
-  function decodeAndCleanFilename(filename) {
+  function decodeAndCleanFilename(filename:string) {
     let decodedFilename = filename;
     try {
       decodedFilename = decodeURIComponent(filename);
@@ -122,7 +129,7 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
                 alt="WarningIcon"
               ></img>
               <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
-                Please select one of the checkboxes
+              Please provide the context for the text you'd like to generate
               </div>
             </div>
           )}
@@ -136,7 +143,7 @@ export function GenerateSocialPosts({ index, videoId, refetchVideos }) {
             />
           )}
           {video && (
-            <Result video={video} isSubmitted={isSubmitted} prompt={prompt} />
+            <Result video={video} isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} prompt={prompt} />
           )}
         </>
       )}

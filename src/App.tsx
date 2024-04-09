@@ -1,13 +1,14 @@
+import React from "react";
 import "./App.css";
 import { useEffect, Suspense } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import keys from "./keys";
-import LoadingSpinner from "./LoadingSpinner";
+import {keys} from "./common/keys";
+import LoadingSpinner from "./common/LoadingSpinner";
 import { GenerateSocialPosts } from "./GenerateSocialPosts";
-import { useGetVideos } from "./apiHooks";
-import { ErrorBoundary } from "./ErrorBoundary";
-import apiConfig from "./apiConfig";
-import ErrorFallback from "./ErrorFallback";
+import { useGetVideos } from "./common/apiHooks";
+import { ErrorBoundary } from "./common/ErrorBoundary";
+import apiConfig from "./common/apiConfig";
+import ErrorFallback from "./common/ErrorFallback";
 
 /** App that generates the written summary, chapters, and highlights of a video
  *
@@ -15,15 +16,18 @@ import ErrorFallback from "./ErrorFallback";
  *
  */
 function App() {
-  const { data: videos, refetch: refetchVideos } = useGetVideos(
-    apiConfig.INDEX_ID
-  );
-
+  const { data: videos, refetch: refetchVideos } = useGetVideos(apiConfig.INDEX_ID);
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries([keys.VIDEOS, apiConfig.INDEX_ID]);
-  }, [apiConfig.INDEX_ID, queryClient]);
+    if (apiConfig.INDEX_ID) {
+      queryClient.invalidateQueries({queryKey: [keys.VIDEOS, apiConfig.INDEX_ID]});
+    }
+  }, [queryClient]);
+
+  if (!apiConfig.INDEX_ID) {
+    return <ErrorFallback error={new Error("Please provide index Id")} />;
+  }
 
   return (
     <ErrorBoundary>
@@ -42,5 +46,6 @@ function App() {
     </ErrorBoundary>
   );
 }
+
 
 export default App;

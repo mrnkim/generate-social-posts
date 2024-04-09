@@ -1,9 +1,12 @@
 import React from "react";
-import WarningIcon from "./Warning.svg";
 import "./ErrorFallback.css";
+const WarningIcon:string = require("./Warning.svg").default;
 
+interface ErrorFallbackProps {
+  error: Error | undefined;
+}
 /** Component to show when there is an error */
-function ErrorFallback({ error }) {
+function ErrorFallback({ error }: ErrorFallbackProps) {
   function handleGoBack() {
     window.location.reload();
   }
