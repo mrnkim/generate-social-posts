@@ -11,7 +11,7 @@ before(() => {
 describe("The home page", () => {
   it("successfully loads the title", () => {
     cy.visit("/");
-    cy.contains("Generate Titles and Hashtags for Your Video");
+    cy.contains("Generate Social Posts for Your Video");
   });
 
   it("successfully loads the first video of an index", () => {

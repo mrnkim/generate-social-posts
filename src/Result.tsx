@@ -49,7 +49,7 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
         {!isLoading && !isFetching && result && (
           <>
             {" "}
-            <div className="result__resultTitle">Generated post</div>
+            <div className="result__resultTitle">Generated Post</div>
             <div className="result__resultData">
               {result.data.split("\n").map((paragraph:string, index:number) => (
                 <p key={index}>{paragraph}</p>
