@@ -127,7 +127,7 @@ export function VideoFileUploadForm({
           <input
             className="videoFileUploadForm__form__input"
             id="fileUpload"
-            data-cy="data-cy-url-input"
+            data-cy="data-cy-form-input"
             ref={setInputRef}
             onChange={handleFileSelect}
             type="file"

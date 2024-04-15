@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+cypress/downloads
+cypress/fixtures
+cypress/support
 
 # production
 /build
