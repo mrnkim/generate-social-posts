@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 describe("The server", () => {
   it("successfully loads", () => {
     cy.request("http://localhost:4001/indexes/653c0592480f870fb3bb01be/videos");

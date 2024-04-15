@@ -1,27 +1,31 @@
+/* eslint-disable no-undef */
+
 describe("Result", () => {
-  it("successfully loads the results of all fields", () => {
+  it("shows an error message when an input form is submitted empty", () => {
     cy.visit("/");
-    cy.get('[data-cy="data-cy-generate-button"]').click({ force: true });
-    cy.contains("Topic");
-    cy.contains("Title");
-    cy.contains("Hashtags");
+    cy.get('[data-cy="data-cy-inputForm-button"]').click({ force: true });
+    cy.contains(
+      "Please provide the context for the text you'd like to generate"
+    );
   });
 
-  it("dynamically changes the results based on (un)checking each field", () => {
-    cy.visit("/");
-    cy.get('[data-cy="data-cy-checkbox-topic"]').click({ force: true });
-    cy.get('[data-cy="data-cy-generate-button"]').click({ force: true });
-    cy.contains("Topic").should("not.exist");
-    cy.contains("Title");
-    cy.contains("Hashtags");
-  });
+  it("successfully shows the results with user prompts", () => {
+    cy.intercept("POST", "/videos/*/generate", {
+      statusCode: 200,
+      body: { data: "Your generated post goes here" },
+    }).as("generate");
 
-  it("disables generate button when all checkboxes are unchecked", () => {
     cy.visit("/");
-    cy.get('[data-cy="data-cy-checkbox-topic"]').click({ force: true });
-    cy.get('[data-cy="data-cy-checkbox-title"]').click({ force: true });
-    cy.get('[data-cy="data-cy-checkbox-hashtag"]').click({ force: true });
-    cy.get('[data-cy="data-cy-generate-button"]').click({ force: true });
-    cy.contains("Please select one of the checkboxes");
+    cy.get('[data-cy="data-cy-inputForm-textarea"]').type(
+      "write a very short instagram post with emojis"
+    );
+    cy.get('[data-cy="data-cy-inputForm-button"]').click({ force: true });
+    cy.wait("@generate");
+
+    cy.contains("Generated Post");
+    cy.get('[data-cy="data-cy-resultData"]').should(
+      "contain.text",
+      "Your generated post goes here"
+    );
   });
 });

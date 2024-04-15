@@ -60,12 +60,13 @@ export const InputForm: React.FC<InputFormProps> = ({
       <form className="inputForm__form" onSubmit={handleSubmit}>
         <textarea
           className="inputForm__form__textarea"
+          data-cy="data-cy-inputForm-textarea"
           id="prompt"
           name="prompt"
           placeholder="Write a very short Instagram post with emojis"
           ref={textAreaRef}
         />
-        <button className="inputForm__form__button" type="submit">
+        <button className="inputForm__form__button" data-cy="data-cy-inputForm-button" type="submit">
           Generate
         </button>{" "}
       </form>
