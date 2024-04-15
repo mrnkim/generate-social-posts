@@ -9,18 +9,23 @@ before(() => {
 });
 
 describe("The home page", () => {
-  it("successfully loads the title", () => {
+  beforeEach(() => {
     cy.visit("/");
+  });
+
+  it("successfully loads the title", () => {
     cy.contains("Generate Social Posts for Your Video");
   });
 
-  it("successfully loads the first video of an index", () => {
-    cy.visit("/");
-    cy.get('[data-cy="data-cy-video"]');
+  it("successfully shows the video upload form", () => {
+    cy.get('[data-cy="data-cy-videoFileUploadForm"]');
   });
 
   it("successfully loads the first video of an index", () => {
-    cy.visit("/");
     cy.get('[data-cy="data-cy-video"]');
+  });
+
+  it("successfully shows the input form", () => {
+    cy.get('[data-cy="data-cy-inputForm"]');
   });
 });

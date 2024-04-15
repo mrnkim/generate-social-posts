@@ -53,7 +53,7 @@ export const InputForm: React.FC<InputFormProps> = ({
     queryClient.invalidateQueries({queryKey: queryKey});  }
 
   return (
-    <div className="inputForm">
+    <div className="inputForm" data-cy="data-cy-inputForm">
       <div className="inputForm__title">
         Tell me what social post you want to generate
       </div>

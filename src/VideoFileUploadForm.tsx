@@ -109,7 +109,7 @@ export function VideoFileUploadForm({
   }
 
   return (
-    <div className="videoFileUploadForm">
+    <div className="videoFileUploadForm" data-cy="data-cy-videoFileUploadForm">
       {!isFileUploading && (
         <div className="videoFileUploadForm__title">Upload video</div>
       )}
