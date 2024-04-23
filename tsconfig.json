@@ -108,7 +108,7 @@
   },
   "include": [ /* Ignore any ts files that is outside src folder*/
   "src"
-  ],
+, "cypress/componentTests"  ],
   "exclude": ["cypress.config.ts", "cypress", "node_modules"]
 
 }

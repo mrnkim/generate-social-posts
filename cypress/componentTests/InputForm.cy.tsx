@@ -1,6 +1,6 @@
 import React from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { InputForm } from '../InputForm'
+import { InputForm } from '../../src/InputForm'
 
 describe('<InputForm />', () => {
   it('renders', () => {
