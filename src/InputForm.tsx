@@ -50,7 +50,8 @@ export const InputForm: React.FC<InputFormProps> = ({
 
     type QueryKey = readonly [string, string, "gist"];
     const queryKey: QueryKey = [keys.VIDEOS, video._id, "gist"];
-    queryClient.invalidateQueries({queryKey: queryKey});  }
+    queryClient.invalidateQueries({queryKey: queryKey});
+  }
 
   return (
     <div className="inputForm" data-cy="data-cy-inputForm">
@@ -63,7 +64,7 @@ export const InputForm: React.FC<InputFormProps> = ({
           data-cy="data-cy-inputForm-textarea"
           id="prompt"
           name="prompt"
-          placeholder="Write a very short Instagram post with emojis"
+          placeholder="Write an Instagram post with emojis"
           ref={textAreaRef}
         />
         <button className="inputForm__form__button" data-cy="data-cy-inputForm-button" type="submit">

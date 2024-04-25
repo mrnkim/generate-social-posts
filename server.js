@@ -95,7 +95,7 @@ app.get(
   }
 );
 
-/** Generate gist of a video */
+/** Generate open-ended text of a video */
 app.post("/videos/:videoId/generate", async (request, response, next) => {
   const videoId = request.params.videoId;
   let prompt = request.body.data;
@@ -116,7 +116,7 @@ app.post("/videos/:videoId/generate", async (request, response, next) => {
   }
 });
 
-/** Index a video for analysis, returning a task ID */
+/** Index a video and return a task ID */
 app.post(
   "/index",
   upload.single("video_file"),
