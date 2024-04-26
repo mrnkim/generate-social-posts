@@ -1,15 +1,8 @@
-import React, {useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import {keys} from './common/keys'
+import { keys } from "./common/keys";
 import "./InputForm.css";
-import { Video } from './common/types';
-
-
-/** Receive user's check prompt for the API call
- *
- * GenerateSocialPosts -> {InputForm}
-*
-*/
+import { Video } from "./common/types";
 
 interface InputFormProps {
   video: Video;
@@ -27,9 +20,25 @@ export const InputForm: React.FC<InputFormProps> = ({
   setPrompt,
 }) => {
   const queryClient = useQueryClient();
+  const instagramRef = useRef<HTMLInputElement | null>(null);
+  const facebookRef = useRef<HTMLInputElement | null>(null);
+  const xRef = useRef<HTMLInputElement | null>(null);
+  const blogRef = useRef<HTMLInputElement | null>(null);
+  const textRadioRef = useRef<HTMLInputElement | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  /** Receive and set user input */
+  const handleOthersSelect = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.display = "block";
+    }
+  };
+
+  const handleOthersDeselect = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.display = "none";
+    }
+  };
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setPrompt("");
@@ -50,7 +59,8 @@ export const InputForm: React.FC<InputFormProps> = ({
 
     type QueryKey = readonly [string, string, "gist"];
     const queryKey: QueryKey = [keys.VIDEOS, video._id, "gist"];
-    queryClient.invalidateQueries({queryKey: queryKey});
+    queryClient.invalidateQueries({ queryKey: queryKey });
+
   }
 
   return (
@@ -59,18 +69,81 @@ export const InputForm: React.FC<InputFormProps> = ({
         Tell me what social post you want to generate
       </div>
       <form className="inputForm__form" onSubmit={handleSubmit}>
-        <textarea
-          className="inputForm__form__textarea"
-          data-cy="data-cy-inputForm-textarea"
-          id="prompt"
-          name="prompt"
-          placeholder="Write an Instagram post with emojis"
-          ref={textAreaRef}
-        />
-        <button className="inputForm__form__button" data-cy="data-cy-inputForm-button" type="submit">
+        <label>
+          <input
+            type="radio"
+            className="inputForm__form__radio"
+            data-cy="data-cy-inputForm-radio"
+            name="platform"
+            value="instagram"
+            id="instagram"
+            ref={instagramRef}
+          />
+        Instagram
+        </label>{" "}
+        <label>
+          <input
+            type="radio"
+            className="inputForm__form__radio"
+            data-cy="data-cy-inputForm-radio"
+            name="platform"
+            value="facebook"
+            ref={facebookRef}
+          />
+        Facebook
+        </label>{" "}
+        <label>
+          <input
+            type="radio"
+            className="inputForm__form__radio"
+            data-cy="data-cy-inputForm-radio"
+            name="platform"
+            value="x"
+            ref={xRef}
+          />
+        X (Twitter)
+        </label>{" "}
+        <label>
+          <input
+            type="radio"
+            className="inputForm__form__radio"
+            data-cy="data-cy-inputForm-radio"
+            name="platform"
+            value="blog"
+            ref={blogRef}
+          />
+        Blog
+        </label>{" "}
+        <label>
+          <input
+            type="radio"
+            className="inputForm__form__radio"
+            data-cy="data-cy-inputForm-radio"
+            name="platform"
+            value="others"
+            ref={textRadioRef}
+            onChange={handleOthersSelect}
+            onBlur={handleOthersDeselect}
+          />
+        Others
+          <textarea
+            className="inputForm__form__textarea"
+            data-cy="data-cy-inputForm-textarea"
+            id="prompt"
+            name="prompt"
+            placeholder="Write your post here..."
+            ref={textAreaRef}
+            style={{ display: "none" }}
+            />
+          </label>{" "}
+        <button
+          className="inputForm__form__button"
+          data-cy="data-cy-inputForm-button"
+          type="submit"
+        >
           Generate
         </button>{" "}
       </form>
     </div>
   );
-}
+};
