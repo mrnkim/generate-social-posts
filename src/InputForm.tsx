@@ -7,6 +7,7 @@ import { Video } from "./common/types";
 interface InputFormProps {
   video: Video;
   setIsSubmitted: (value: boolean) => void;
+  isSubmitted: boolean;
   setShowVideoTitle: (value: boolean) => void;
   setShowCheckWarning: (value: boolean) => void;
   setPrompt: (value: string) => void;
@@ -15,10 +16,12 @@ interface InputFormProps {
 export const InputForm: React.FC<InputFormProps> = ({
   video,
   setIsSubmitted,
+  isSubmitted,
   setShowVideoTitle,
   setShowCheckWarning,
   setPrompt,
 }) => {
+  console.log("🚀 > isSubmitted=", isSubmitted)
   const queryClient = useQueryClient();
   const instagramRef = useRef<HTMLInputElement | null>(null);
   const facebookRef = useRef<HTMLInputElement | null>(null);
@@ -43,7 +46,12 @@ export const InputForm: React.FC<InputFormProps> = ({
     event.preventDefault();
     setPrompt("");
 
-    if (textAreaRef.current) {
+    if (instagramRef.current) {
+      setPrompt("write a Instagram post with emojis, 100 words or less. Do not provide an explanation. Do not provide a summary.")
+      setShowCheckWarning(false);
+      setIsSubmitted(true);
+      setShowVideoTitle(true);
+    } else if (textAreaRef.current) {
       const inputValue = textAreaRef.current.value.trim();
       if (inputValue.length > 0) {
         setPrompt(inputValue);
@@ -78,6 +86,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             value="instagram"
             id="instagram"
             ref={instagramRef}
+            disabled={isSubmitted}
           />
         Instagram
         </label>{" "}
@@ -89,6 +98,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             name="platform"
             value="facebook"
             ref={facebookRef}
+            disabled={isSubmitted}
           />
         Facebook
         </label>{" "}
@@ -100,6 +110,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             name="platform"
             value="x"
             ref={xRef}
+            disabled={isSubmitted}
           />
         X (Twitter)
         </label>{" "}
@@ -111,6 +122,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             name="platform"
             value="blog"
             ref={blogRef}
+            disabled={isSubmitted}
           />
         Blog
         </label>{" "}
@@ -124,6 +136,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             ref={textRadioRef}
             onChange={handleOthersSelect}
             onBlur={handleOthersDeselect}
+            disabled={isSubmitted}
           />
         Others
           <textarea
@@ -134,12 +147,14 @@ export const InputForm: React.FC<InputFormProps> = ({
             placeholder="Write your post here..."
             ref={textAreaRef}
             style={{ display: "none" }}
+            disabled={isSubmitted}
             />
           </label>{" "}
         <button
           className="inputForm__form__button"
           data-cy="data-cy-inputForm-button"
           type="submit"
+          disabled={isSubmitted}
         >
           Generate
         </button>{" "}

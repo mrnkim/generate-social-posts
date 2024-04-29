@@ -38,7 +38,8 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
   }, [prompt, video?._id, isSubmitted]);
 
   useEffect(() => {
-    setIsSubmitted(false);
+    if (!isLoading && !isFetching) {
+    setIsSubmitted(false);}
   }
 
   )
