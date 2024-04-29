@@ -11,6 +11,7 @@ interface InputFormProps {
   setShowVideoTitle: (value: boolean) => void;
   setShowCheckWarning: (value: boolean) => void;
   setPrompt: (value: string) => void;
+  setPlatform: (value: string) => void;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({
@@ -20,8 +21,8 @@ export const InputForm: React.FC<InputFormProps> = ({
   setShowVideoTitle,
   setShowCheckWarning,
   setPrompt,
+  setPlatform,
 }) => {
-  console.log("🚀 > isSubmitted=", isSubmitted)
   const queryClient = useQueryClient();
   const instagramRef = useRef<HTMLInputElement | null>(null);
   const facebookRef = useRef<HTMLInputElement | null>(null);
@@ -42,22 +43,49 @@ export const InputForm: React.FC<InputFormProps> = ({
     }
   };
 
+  const handleRadioChange = () => {
+    if (!textRadioRef.current?.checked && textAreaRef.current) {
+      handleOthersDeselect();
+      textAreaRef.current.value="";
+    }
+  };
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setPrompt("");
 
-    if (instagramRef.current) {
+    if (instagramRef.current?.checked) {
       setPrompt("write a Instagram post with emojis, 100 words or less. Do not provide an explanation. Do not provide a summary.")
       setShowCheckWarning(false);
       setIsSubmitted(true);
       setShowVideoTitle(true);
-    } else if (textAreaRef.current) {
-      const inputValue = textAreaRef.current.value.trim();
-      if (inputValue.length > 0) {
+      setPlatform("Instagram")
+    } else if (facebookRef.current?.checked) {
+      setPrompt("write a Facebook post with emojis, 150 words or less. Do not provide an explanation. Do not provide a summary.")
+      setShowCheckWarning(false);
+      setIsSubmitted(true);
+      setShowVideoTitle(true);
+      setPlatform("Facebook")
+    } else if (xRef.current?.checked) {
+      setPrompt("write a X (formerly Twitter) post with emojis, 50 words or less. Do not provide an explanation. Do not provide a summary.")
+      setShowCheckWarning(false);
+      setIsSubmitted(true);
+      setShowVideoTitle(true);
+      setPlatform("X")
+    } else if (blogRef.current?.checked) {
+      setPrompt("write a blog post with details. Divide sections with subtitles. Do not provide an explanation. Do not provide a summary.")
+      setShowCheckWarning(false);
+      setIsSubmitted(true);
+      setShowVideoTitle(true);
+      setPlatform("Blog")
+    }else if (textRadioRef.current?.checked) {
+      const inputValue = textAreaRef.current?.value.trim();
+      if (inputValue?.length &&  inputValue?.length > 0) {
         setPrompt(inputValue);
         setIsSubmitted(true);
         setShowVideoTitle(true);
         setShowCheckWarning(false);
+        setPlatform(`"${inputValue}"`)
       } else {
         setShowVideoTitle(false);
         setShowCheckWarning(true);
@@ -87,6 +115,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             id="instagram"
             ref={instagramRef}
             disabled={isSubmitted}
+            onChange={handleRadioChange}
           />
         Instagram
         </label>{" "}
@@ -99,6 +128,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             value="facebook"
             ref={facebookRef}
             disabled={isSubmitted}
+            onChange={handleRadioChange}
           />
         Facebook
         </label>{" "}
@@ -111,6 +141,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             value="x"
             ref={xRef}
             disabled={isSubmitted}
+            onChange={handleRadioChange}
           />
         X (Twitter)
         </label>{" "}
@@ -123,6 +154,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             value="blog"
             ref={blogRef}
             disabled={isSubmitted}
+            onChange={handleRadioChange}
           />
         Blog
         </label>{" "}
@@ -135,7 +167,11 @@ export const InputForm: React.FC<InputFormProps> = ({
             value="others"
             ref={textRadioRef}
             onChange={handleOthersSelect}
-            onBlur={handleOthersDeselect}
+            onBlur={(e) => {
+              if (!textAreaRef.current?.contains(e.relatedTarget as Node)) {
+                handleOthersDeselect();
+              }
+            }}
             disabled={isSubmitted}
           />
         Others

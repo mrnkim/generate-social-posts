@@ -36,9 +36,9 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
   const [showCheckWarning, setShowCheckWarning] = useState(false);
-  console.log("🚀 > showCheckWarning=", showCheckWarning)
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFileUploading, setIsFileUploading] = useState(false);
+  const [platform, setPlatform] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -76,6 +76,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
     setShowCheckWarning(false);
     setSelectedFile(null);
     setIsFileUploading(false);
+    setPlatform("")
   }, [index, videoId, queryClient]);
 
   return (
@@ -142,10 +143,11 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
               setShowVideoTitle={setShowVideoTitle}
               setShowCheckWarning={setShowCheckWarning}
               setPrompt={setPrompt}
+              setPlatform = {setPlatform}
             />
           )}
           {video && (
-            <Result video={video} isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} prompt={prompt} />
+            <Result video={video} isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} prompt={prompt} platform={platform} />
           )}
         </>
       )}
