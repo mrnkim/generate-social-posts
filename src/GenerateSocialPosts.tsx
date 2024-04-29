@@ -35,7 +35,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
   const [prompt, setPrompt] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
-  const [showCheckWarning, setShowCheckWarning] = useState(false);
+  // const [showCheckWarning, setShowCheckWarning] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFileUploading, setIsFileUploading] = useState(false);
   const [platform, setPlatform] = useState("");
@@ -73,7 +73,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
     resetPrompt();
     setIsSubmitted(false);
     setShowVideoTitle(false);
-    setShowCheckWarning(false);
+    // setShowCheckWarning(false);
     setSelectedFile(null);
     setIsFileUploading(false);
     setPlatform("")
@@ -123,7 +123,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
               {vidTitleClean}
             </div>
           )}
-          {showCheckWarning && (
+          {/* {showCheckWarning && (
             <div className="GenerateSocialPosts__warningMessageWrapper">
               <img
                 className="GenerateSocialPosts__warningMessageWrapper__warningIcon"
@@ -134,16 +134,17 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
               Please provide the context for the text you'd like to generate
               </div>
             </div>
-          )}
+          )} */}
           {video && (
             <InputForm
               video={video}
               setIsSubmitted={setIsSubmitted}
               isSubmitted={isSubmitted}
               setShowVideoTitle={setShowVideoTitle}
-              setShowCheckWarning={setShowCheckWarning}
+              // setShowCheckWarning={setShowCheckWarning}
               setPrompt={setPrompt}
-              setPlatform = {setPlatform}
+              setPlatform={setPlatform}
+              // showCheckWarning={showCheckWarning}
             />
           )}
           {video && (

@@ -35,7 +35,7 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate"]});
+    queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate", prompt]});
   }, [prompt, video?._id, isSubmitted]);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
         {!isLoading && !isFetching && result && (
           <>
             {" "}
-            <div className="result__resultTitle">Generated Post for {platform.length > 0 ? platform : prompt}</div>
+            <div className="result__resultTitle">Generated Post for {platform.length > 0 ? platform : prompt }</div>
             <div className="result__resultData" data-cy="data-cy-resultData">
               {result.data.split("\n").map((paragraph:string, index:number) => (
                 <p key={index}>{paragraph}</p>

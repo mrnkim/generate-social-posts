@@ -4,14 +4,16 @@ import { keys } from "./common/keys";
 import "./InputForm.css";
 import { Video } from "./common/types";
 
+const WarningIcon:string = require("./common/Warning.svg").default;
 interface InputFormProps {
   video: Video;
   setIsSubmitted: (value: boolean) => void;
   isSubmitted: boolean;
   setShowVideoTitle: (value: boolean) => void;
-  setShowCheckWarning: (value: boolean) => void;
+  // setShowCheckWarning: (value: boolean) => void;
   setPrompt: (value: string) => void;
   setPlatform: (value: string) => void;
+  // showCheckWarning:boolean;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({
@@ -19,10 +21,13 @@ export const InputForm: React.FC<InputFormProps> = ({
   setIsSubmitted,
   isSubmitted,
   setShowVideoTitle,
-  setShowCheckWarning,
+  // setShowCheckWarning,
   setPrompt,
   setPlatform,
+  // showCheckWarning
 }) => {
+  const [showCheckWarning, setShowCheckWarning] = useState(false);
+   console.log("🚀 > showCheckWarning=", showCheckWarning)
   const queryClient = useQueryClient();
   const instagramRef = useRef<HTMLInputElement | null>(null);
   const facebookRef = useRef<HTMLInputElement | null>(null);
@@ -30,9 +35,16 @@ export const InputForm: React.FC<InputFormProps> = ({
   const blogRef = useRef<HTMLInputElement | null>(null);
   const textRadioRef = useRef<HTMLInputElement | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  console.log("🚀 > textAreaRef=", textAreaRef)
 
   const handleOthersSelect = () => {
+    setPrompt("")
+    setPlatform("")
+    setIsSubmitted(false)
+    setShowCheckWarning(false);
+    queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate", prompt]});
     if (textAreaRef.current) {
+      textAreaRef.current.value="";
       textAreaRef.current.style.display = "block";
     }
   };
@@ -46,6 +58,11 @@ export const InputForm: React.FC<InputFormProps> = ({
   const handleRadioChange = () => {
     if (!textRadioRef.current?.checked && textAreaRef.current) {
       handleOthersDeselect();
+      setPrompt("")
+      setPlatform("")
+      setIsSubmitted(false)
+      setShowCheckWarning(false);
+      queryClient.invalidateQueries({queryKey: [keys.VIDEOS, video?._id, "generate", prompt]});
       textAreaRef.current.value="";
     }
   };
@@ -54,49 +71,36 @@ export const InputForm: React.FC<InputFormProps> = ({
     event.preventDefault();
     setPrompt("");
 
+    let promptValue = "";
+    let platformValue = "";
+
     if (instagramRef.current?.checked) {
-      setPrompt("write a Instagram post with emojis, 100 words or less. Do not provide an explanation. Do not provide a summary.")
-      setShowCheckWarning(false);
-      setIsSubmitted(true);
-      setShowVideoTitle(true);
-      setPlatform("Instagram")
+      promptValue = "write a Instagram post with emojis, 100 words or less. Do not provide an explanation. Do not provide a summary.";
+      platformValue = "Instagram";
     } else if (facebookRef.current?.checked) {
-      setPrompt("write a Facebook post with emojis, 150 words or less. Do not provide an explanation. Do not provide a summary.")
-      setShowCheckWarning(false);
-      setIsSubmitted(true);
-      setShowVideoTitle(true);
-      setPlatform("Facebook")
+      promptValue = "write a Facebook post with emojis, 150 words or less. Do not provide an explanation. Do not provide a summary.";
+      platformValue = "Facebook";
     } else if (xRef.current?.checked) {
-      setPrompt("write a X (formerly Twitter) post with emojis, 50 words or less. Do not provide an explanation. Do not provide a summary.")
-      setShowCheckWarning(false);
-      setIsSubmitted(true);
-      setShowVideoTitle(true);
-      setPlatform("X")
+      promptValue = "write a X (formerly Twitter) post with emojis, 50 words or less. Do not provide an explanation. Do not provide a summary.";
+      platformValue = "X";
     } else if (blogRef.current?.checked) {
-      setPrompt("write a blog post with details. Divide sections with subtitles. Do not provide an explanation. Do not provide a summary.")
-      setShowCheckWarning(false);
-      setIsSubmitted(true);
-      setShowVideoTitle(true);
-      setPlatform("Blog")
-    }else if (textRadioRef.current?.checked) {
+      promptValue = "write a blog post with details. Divide sections with subtitles. Do not provide an explanation. Do not provide a summary.";
+      platformValue = "Blog";
+    } else if (textRadioRef.current?.checked) {
       const inputValue = textAreaRef.current?.value.trim();
-      if (inputValue?.length &&  inputValue?.length > 0) {
-        setPrompt(inputValue);
-        setIsSubmitted(true);
-        setShowVideoTitle(true);
-        setShowCheckWarning(false);
-        setPlatform(`"${inputValue}"`)
+      if (inputValue?.length && inputValue?.length > 0) {
+        promptValue = inputValue;
+        platformValue = `"${inputValue}"`;
       } else {
-        setShowVideoTitle(false);
         setShowCheckWarning(true);
         return;
       }
     }
 
-    type QueryKey = readonly [string, string, "gist"];
-    const queryKey: QueryKey = [keys.VIDEOS, video._id, "gist"];
-    queryClient.invalidateQueries({ queryKey: queryKey });
-
+    setPrompt(promptValue);
+    setIsSubmitted(true);
+    setShowVideoTitle(true);
+    setPlatform(platformValue);
   }
 
   return (
@@ -180,11 +184,23 @@ export const InputForm: React.FC<InputFormProps> = ({
             data-cy="data-cy-inputForm-textarea"
             id="prompt"
             name="prompt"
-            placeholder="Write your post here..."
+            placeholder="Write your prompt here"
             ref={textAreaRef}
-            style={{ display: "none" }}
+            style={{ display: showCheckWarning ? "block" : "none" }}
             disabled={isSubmitted}
             />
+             {showCheckWarning && (
+            <div className="GenerateSocialPosts__warningMessageWrapper">
+              <img
+                className="GenerateSocialPosts__warningMessageWrapper__warningIcon"
+                src={WarningIcon}
+                alt="WarningIcon"
+              ></img>
+              <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
+              Please provide the context for the text you'd like to generate
+              </div>
+            </div>
+          )}
           </label>{" "}
         <button
           className="inputForm__form__button"

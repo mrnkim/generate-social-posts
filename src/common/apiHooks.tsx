@@ -51,7 +51,7 @@ export function useGetVideo(indexId: string, videoId: string, enabled: boolean) 
 
 export function useGenerate(prompt: string, videoId: string, enabled: boolean) {
   return useQuery({
-    queryKey: [keys.VIDEOS, "generate", videoId],
+    queryKey: [keys.VIDEOS, "generate", videoId, prompt],
     queryFn: async () => {
       if (!enabled) {
         return null;
