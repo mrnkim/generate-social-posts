@@ -3,6 +3,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import { keys } from "./common/keys";
 import "./InputForm.css";
 import { Video } from "./common/types";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faBlog } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
 const WarningIcon:string = require("./common/Warning.svg").default;
 interface InputFormProps {
@@ -10,10 +16,8 @@ interface InputFormProps {
   setIsSubmitted: (value: boolean) => void;
   isSubmitted: boolean;
   setShowVideoTitle: (value: boolean) => void;
-  // setShowCheckWarning: (value: boolean) => void;
   setPrompt: (value: string) => void;
   setPlatform: (value: string) => void;
-  // showCheckWarning:boolean;
 }
 
 export const InputForm: React.FC<InputFormProps> = ({
@@ -21,13 +25,10 @@ export const InputForm: React.FC<InputFormProps> = ({
   setIsSubmitted,
   isSubmitted,
   setShowVideoTitle,
-  // setShowCheckWarning,
   setPrompt,
   setPlatform,
-  // showCheckWarning
 }) => {
   const [showCheckWarning, setShowCheckWarning] = useState(false);
-   console.log("🚀 > showCheckWarning=", showCheckWarning)
   const queryClient = useQueryClient();
   const instagramRef = useRef<HTMLInputElement | null>(null);
   const facebookRef = useRef<HTMLInputElement | null>(null);
@@ -35,7 +36,6 @@ export const InputForm: React.FC<InputFormProps> = ({
   const blogRef = useRef<HTMLInputElement | null>(null);
   const textRadioRef = useRef<HTMLInputElement | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
-  console.log("🚀 > textAreaRef=", textAreaRef)
 
   const handleOthersSelect = () => {
     setPrompt("")
@@ -121,7 +121,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             disabled={isSubmitted}
             onChange={handleRadioChange}
           />
-        Instagram
+<FontAwesomeIcon icon={faInstagram} /> Instagram
         </label>{" "}
         <label>
           <input
@@ -134,8 +134,10 @@ export const InputForm: React.FC<InputFormProps> = ({
             disabled={isSubmitted}
             onChange={handleRadioChange}
           />
-        Facebook
+          <FontAwesomeIcon icon={faFacebook} /> Facebook
         </label>{" "}
+                <div className="inputForm_form_radioWrapper">
+
         <label>
           <input
             type="radio"
@@ -147,7 +149,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             disabled={isSubmitted}
             onChange={handleRadioChange}
           />
-        X (Twitter)
+          <FontAwesomeIcon icon={faXTwitter} /> X(Twitter)
         </label>{" "}
         <label>
           <input
@@ -160,7 +162,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             disabled={isSubmitted}
             onChange={handleRadioChange}
           />
-        Blog
+           <FontAwesomeIcon icon={faBlog} /> Blog
         </label>{" "}
         <label>
           <input
@@ -178,7 +180,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             }}
             disabled={isSubmitted}
           />
-        Others
+          <FontAwesomeIcon icon={faCommentDots} /> Others
           <textarea
             className="inputForm__form__textarea"
             data-cy="data-cy-inputForm-textarea"
@@ -202,6 +204,8 @@ export const InputForm: React.FC<InputFormProps> = ({
             </div>
           )}
           </label>{" "}
+          </div>
+
         <button
           className="inputForm__form__button"
           data-cy="data-cy-inputForm-button"

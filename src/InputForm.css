@@ -56,3 +56,17 @@
     cursor: pointer;
     transform: scale(0.98);
 }
+
+.inputForm_form_radioWrapper {
+    margin-top: 15px;
+}
+
+.inputForm__form__radio {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+label {
+    font-size: large;
+}

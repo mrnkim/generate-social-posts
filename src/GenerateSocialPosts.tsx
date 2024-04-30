@@ -10,7 +10,6 @@ import { keys } from "./common/keys";
 import LoadingSpinner from "./common/LoadingSpinner";
 import { ErrorBoundary } from "./common/ErrorBoundary";
 
-const WarningIcon:string = require("./common/Warning.svg").default;
 const greenWarningIcon:string = require("./common/Warning_Green.svg").default;
 
 /** Generate Titles and Hashtags
@@ -35,7 +34,6 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
   const [prompt, setPrompt] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showVideoTitle, setShowVideoTitle] = useState(false);
-  // const [showCheckWarning, setShowCheckWarning] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFileUploading, setIsFileUploading] = useState(false);
   const [platform, setPlatform] = useState("");
@@ -73,7 +71,6 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
     resetPrompt();
     setIsSubmitted(false);
     setShowVideoTitle(false);
-    // setShowCheckWarning(false);
     setSelectedFile(null);
     setIsFileUploading(false);
     setPlatform("")
@@ -123,28 +120,14 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
               {vidTitleClean}
             </div>
           )}
-          {/* {showCheckWarning && (
-            <div className="GenerateSocialPosts__warningMessageWrapper">
-              <img
-                className="GenerateSocialPosts__warningMessageWrapper__warningIcon"
-                src={WarningIcon}
-                alt="WarningIcon"
-              ></img>
-              <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
-              Please provide the context for the text you'd like to generate
-              </div>
-            </div>
-          )} */}
           {video && (
             <InputForm
               video={video}
               setIsSubmitted={setIsSubmitted}
               isSubmitted={isSubmitted}
               setShowVideoTitle={setShowVideoTitle}
-              // setShowCheckWarning={setShowCheckWarning}
               setPrompt={setPrompt}
               setPlatform={setPlatform}
-              // showCheckWarning={showCheckWarning}
             />
           )}
           {video && (
