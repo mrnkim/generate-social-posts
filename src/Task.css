@@ -4,7 +4,6 @@
     margin-top: 10px;
 }
 
-
 .task__dummyImage {
     margin-top: 10px;
     width: 381px  !important;
@@ -22,13 +21,13 @@
     max-width: 50%;
     max-height: 50%;
     animation: uploadProgress 2s linear infinite;
-  }
+}
 
-  @keyframes uploadProgress {
+@keyframes uploadProgress {
     0% {
       transform: translateX(-100%);
     }
     100% {
       transform: translateX(100%);
     }
-  }
+}

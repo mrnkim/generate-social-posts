@@ -20,7 +20,6 @@ interface TaskProps {
   refetchVideos: () => void;
 }
 
-
 export const Task:React.FC<TaskProps> = ({ taskId, setTaskId, refetchVideos }) => {
   const { data: task } = useGetTask(taskId);
 

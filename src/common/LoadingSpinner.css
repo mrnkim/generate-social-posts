@@ -11,7 +11,7 @@
     padding: 0.2rem;
   }
 
-  @keyframes rotate {
+@keyframes rotate {
     0% {
       transform: rotate(0deg);
     }
@@ -20,6 +20,6 @@
     }
   }
 
-  .loadingSpinner__img {
+.loadingSpinner__img {
     width: 100%;
   }

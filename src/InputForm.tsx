@@ -20,6 +20,12 @@ interface InputFormProps {
   setPlatform: (value: string) => void;
 }
 
+/** Form to get user input
+ *
+ * GenerateSocialPosts -> { InputForm }
+ *
+ */
+
 export const InputForm: React.FC<InputFormProps> = ({
   video,
   setIsSubmitted,
@@ -96,7 +102,6 @@ export const InputForm: React.FC<InputFormProps> = ({
         return;
       }
     }
-
     setPrompt(promptValue);
     setIsSubmitted(true);
     setShowVideoTitle(true);
@@ -121,7 +126,7 @@ export const InputForm: React.FC<InputFormProps> = ({
             disabled={isSubmitted}
             onChange={handleRadioChange}
           />
-<FontAwesomeIcon icon={faInstagram} /> Instagram
+          <FontAwesomeIcon icon={faInstagram} /> Instagram
         </label>{" "}
         <label>
           <input
@@ -136,76 +141,74 @@ export const InputForm: React.FC<InputFormProps> = ({
           />
           <FontAwesomeIcon icon={faFacebook} /> Facebook
         </label>{" "}
-                <div className="inputForm_form_radioWrapper">
-
-        <label>
-          <input
-            type="radio"
-            className="inputForm__form__radio"
-            data-cy="data-cy-inputForm-radio"
-            name="platform"
-            value="x"
-            ref={xRef}
-            disabled={isSubmitted}
-            onChange={handleRadioChange}
-          />
-          <FontAwesomeIcon icon={faXTwitter} /> X(Twitter)
-        </label>{" "}
-        <label>
-          <input
-            type="radio"
-            className="inputForm__form__radio"
-            data-cy="data-cy-inputForm-radio"
-            name="platform"
-            value="blog"
-            ref={blogRef}
-            disabled={isSubmitted}
-            onChange={handleRadioChange}
-          />
-           <FontAwesomeIcon icon={faBlog} /> Blog
-        </label>{" "}
-        <label>
-          <input
-            type="radio"
-            className="inputForm__form__radio"
-            data-cy="data-cy-inputForm-radio"
-            name="platform"
-            value="others"
-            ref={textRadioRef}
-            onChange={handleOthersSelect}
-            onBlur={(e) => {
-              if (!textAreaRef.current?.contains(e.relatedTarget as Node)) {
-                handleOthersDeselect();
-              }
-            }}
-            disabled={isSubmitted}
-          />
-          <FontAwesomeIcon icon={faCommentDots} /> Others
-          <textarea
-            className="inputForm__form__textarea"
-            data-cy="data-cy-inputForm-textarea"
-            id="prompt"
-            name="prompt"
-            placeholder="Write your prompt here"
-            ref={textAreaRef}
-            style={{ display: showCheckWarning ? "block" : "none" }}
-            disabled={isSubmitted}
+        <div className="inputForm_form_radioWrapper">
+          <label>
+            <input
+              type="radio"
+              className="inputForm__form__radio"
+              data-cy="data-cy-inputForm-radio"
+              name="platform"
+              value="x"
+              ref={xRef}
+              disabled={isSubmitted}
+              onChange={handleRadioChange}
             />
-             {showCheckWarning && (
-            <div className="GenerateSocialPosts__warningMessageWrapper">
-              <img
-                className="GenerateSocialPosts__warningMessageWrapper__warningIcon"
-                src={WarningIcon}
-                alt="WarningIcon"
-              ></img>
-              <div className="GenerateSocialPosts__warningMessageWrapper__warningMessage">
-              Please provide the context for the text you'd like to generate
-              </div>
-            </div>
-          )}
+            <FontAwesomeIcon icon={faXTwitter} /> X(Twitter)
           </label>{" "}
+          <label>
+            <input
+              type="radio"
+              className="inputForm__form__radio"
+              data-cy="data-cy-inputForm-radio"
+              name="platform"
+              value="blog"
+              ref={blogRef}
+              disabled={isSubmitted}
+              onChange={handleRadioChange}
+            />
+            <FontAwesomeIcon icon={faBlog} /> Blog
+          </label>{" "}
+          <label>
+            <input
+              type="radio"
+              className="inputForm__form__radio"
+              data-cy="data-cy-inputForm-radio"
+              name="platform"
+              value="others"
+              ref={textRadioRef}
+              onChange={handleOthersSelect}
+              onBlur={(e) => {
+                if (!textAreaRef.current?.contains(e.relatedTarget as Node)) {
+                  handleOthersDeselect();
+                }
+              }}
+              disabled={isSubmitted}
+            />
+            <FontAwesomeIcon icon={faCommentDots} /> Others
+            </label>{" "}
+            <textarea
+              className="inputForm__form__textarea"
+              data-cy="data-cy-inputForm-textarea"
+              id="prompt"
+              name="prompt"
+              placeholder="Write your own requirements / prompt here"
+              ref={textAreaRef}
+              style={{ display: showCheckWarning ? "block" : "none" }}
+              disabled={isSubmitted}
+              />
+            {showCheckWarning && (
+              <div className="inputForm__form__warningMessageWrapper">
+                <img
+                  className="inputForm__form__warningMessageWrapper__warningIcon"
+                  src={WarningIcon}
+                  alt="WarningIcon"
+                ></img>
+                <div className="inputForm__form__warningMessageWrapper__warningMessage">
+                Please provide your own requirements / prompt
+                </div>
+              </div>
+            )}
           </div>
-
         <button
           className="inputForm__form__button"
           data-cy="data-cy-inputForm-button"

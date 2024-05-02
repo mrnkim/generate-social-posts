@@ -11,7 +11,7 @@ import { keys } from "./common/keys";
 
 /** Receive user's video file, submit it to API, and show task status
  *
- * GenerateSocialPosts -> {VideoFileUploadForm} -> Task
+ * VideoFileUploadForm -> Task -> Video
  *
  */
 
@@ -43,7 +43,7 @@ export function VideoFileUploadForm({
     inputRef.current = ref;
   };
 
-  /** Submit a video for indexing  */
+  /** Submits a video for indexing  */
   async function indexVideo() {
     try {
       const form = new FormData();
@@ -67,7 +67,7 @@ export function VideoFileUploadForm({
     }
   }
 
-  /** Verify file type */
+  /** Verifies file type */
   function handleFileSelect(event: React.ChangeEvent<HTMLInputElement>) {
     let userSelectedFile = event.target.files?.[0];
 
@@ -92,7 +92,7 @@ export function VideoFileUploadForm({
     }
   }
 
-  /** Get information of a video and set it as task */
+  /** Gets information of a video and set it as task */
   async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     if (selectedFile) {

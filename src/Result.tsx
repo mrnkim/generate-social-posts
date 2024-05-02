@@ -41,9 +41,7 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
   useEffect(() => {
     if (!isLoading && !isFetching) {
     setIsSubmitted(false);}
-  }
-
-  )
+  })
 
   return (
     <ErrorBoundary>

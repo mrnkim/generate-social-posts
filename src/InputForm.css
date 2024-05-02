@@ -67,6 +67,22 @@
     margin-right: 5px;
 }
 
+.inputForm__form__warningMessageWrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.inputForm__form__warningMessageWrapper__warningMessage {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #F44336
+}
+
 label {
     font-size: large;
 }
