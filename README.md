@@ -40,7 +40,7 @@ Use this app to effortlessly create social media posts of any type from short, f
 
    ```
    .env
-   REACT_APP_API_URL=https://api.twelvelabs.io/v1.2 
+   REACT_APP_API_URL=https://api.twelvelabs.io/v1.2
    REACT_APP_SERVER_URL=<YOUR_SERVER_URL> //e.g., http://localhost
    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> //e.g., 4001
    REACT_APP_API_KEY=<YOUR_API_KEY>
