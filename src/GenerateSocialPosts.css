@@ -10,7 +10,7 @@
     font-weight: 500;
 }
 
-  .GenerateSocialPosts__videoTitle {
+.GenerateSocialPosts__videoTitle {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -18,7 +18,7 @@
     text-align: center;
 }
 
-  .GenerateSocialPosts__warningMessageWrapper__warningMessage {
+.GenerateSocialPosts__warningMessageWrapper__warningMessage {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -46,7 +46,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .GenerateSocialPosts__uploadMessageWrapper__message {
     display: flex;

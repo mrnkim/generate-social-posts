@@ -15,6 +15,7 @@ import ErrorFallback from "./common/ErrorFallback";
  * App -> GenerateSocialPosts
  *
  */
+
 function App() {
   const { data: videos, refetch: refetchVideos } = useGetVideos(apiConfig.INDEX_ID);
   const queryClient = useQueryClient();
@@ -46,6 +47,5 @@ function App() {
     </ErrorBoundary>
   );
 }
-
 
 export default App;

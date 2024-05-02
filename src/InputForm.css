@@ -18,6 +18,7 @@
 }
 
 .inputForm__form__textarea {
+    margin-top: 30px;
     width: 365px;
     height: 106px;
     border: 1px solid #D4D5D2;
@@ -54,4 +55,34 @@
 .inputForm__form__button:hover:enabled {
     cursor: pointer;
     transform: scale(0.98);
+}
+
+.inputForm_form_radioWrapper {
+    margin-top: 15px;
+}
+
+.inputForm__form__radio {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.inputForm__form__warningMessageWrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.inputForm__form__warningMessageWrapper__warningMessage {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #F44336
+}
+
+label {
+    font-size: large;
 }

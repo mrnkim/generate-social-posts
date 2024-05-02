@@ -5,7 +5,7 @@ import "./Video.css";
 /** Shows a video
  *
  * GenerateSocialPosts -> Video
- * GenerateSocialPosts -> {VideoFileUploadForm} -> Video
+ * GenerateSocialPosts -> {VideoFileUploadForm} -> Task -> Video
  *
  */
 

@@ -4,18 +4,18 @@
 
 ## 👋 Introduction
 
-Use this app to effortlessly create social media posts of any type from short, fun Instagram updates to in-depth Medium blog posts loaded with details. As a video content creator, you may already have fantastic video content. With this app, you can swiftly transform it into written content suitable for various social media platforms!
+Use this app to effortlessly create social media posts of any type from short, fun Instagram updates to in-depth blog posts loaded with details. As a video content creator, you may already have fantastic video content. With this app, you can swiftly transform it into written content suitable for various social media platforms!
 
 <div style="border: 1px solid black;">
-  <img src="public/Generate_Social_Posts.JPG" alt="app screenshot" />
+  <img src="public/generate_social_posts_app_screenshot.jpeg" alt="app screenshot" />
 </div>
 
 ### Built With
 
 - [Twelve Labs API](https://docs.twelvelabs.io/docs)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [TypeScript](https://www.typescriptlang.org/)
 - [React](https://react.dev/)
-- [React Player](https://www.npmjs.com/package/react-player)
 - [React Query](https://tanstack.com/query/latest)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -25,7 +25,7 @@ Use this app to effortlessly create social media posts of any type from short, f
 ### Step 1. Clone the repo
 
 ```sh
-   git clone git@github.com:mrnkim/Generate-Social-Posts-for-Your-Video.git
+   git clone git@github.com:mrnkim/generate-social-posts.git
 ```
 
 ### Step 2. Generate API Key & Create an Index
@@ -40,9 +40,9 @@ Use this app to effortlessly create social media posts of any type from short, f
 
    ```
    .env
+   REACT_APP_API_URL=https://api.twelvelabs.io/v1.2 
    REACT_APP_SERVER_URL=<YOUR_SERVER_URL> //e.g., http://localhost
    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> //e.g., 4001
-   REACT_APP_API_URL=https://api.twelvelabs.io/v1.2 //v1.2 required
    REACT_APP_API_KEY=<YOUR_API_KEY>
    REACT_APP_INDEX_ID=<YOUR_INDEX_ID>
    ```
