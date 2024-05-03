@@ -7,7 +7,7 @@
 Use this app to effortlessly create social media posts of any type from short, fun Instagram updates to in-depth blog posts loaded with details. As a video content creator, you may already have fantastic video content. With this app, you can swiftly transform it into written content suitable for various social media platforms!
 
 <div style="border: 1px solid black;">
-  <img src="public/screenshot.jpeg" alt="screenshot" />
+  <img src="public/gif.gif" alt="screenshot" />
 </div>
 
 ### Built With

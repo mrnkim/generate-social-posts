@@ -75,8 +75,6 @@ export const InputForm: React.FC<InputFormProps> = ({
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setPrompt("");
-
     let promptValue = "";
     let platformValue = "";
 
