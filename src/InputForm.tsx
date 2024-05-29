@@ -79,16 +79,16 @@ export const InputForm: React.FC<InputFormProps> = ({
     let platformValue = "";
 
     if (instagramRef.current?.checked) {
-      promptValue = "Write a summary. Format should be a Instagram post. 100 words or less. Use emojis. Do not provide your answer but the summary. Do not provide an explanation. Do not provide a summary.";
+      promptValue = "Write a summary. Format should be a Instagram post. 100 words or less. Use emojis. Do not provide your answer (e.g., Certainly). Provide only the summary. Do not provide an explanation. ";
       platformValue = "Instagram";
     } else if (facebookRef.current?.checked) {
-      promptValue = "Write a summary. Format should be a Facebook post. 150 words or less. Use emojis. Do not provide your answer but the summary. Do not provide an explanation. Do not provide a summary.";
+      promptValue = "Write a summary. Format should be a Facebook post. 150 words or less. Use emojis. Do not provide your answer (e.g., Certainly). Provide only the summary. Do not provide an explanation. ";
       platformValue = "Facebook";
     } else if (xRef.current?.checked) {
-      promptValue = "Write a summary. Format should be a X (formerly Twitter) post. 50 words or less. Use emojis. Do not provide your answer but the summary. Do not provide an explanation. Do not provide a summary.";
+      promptValue = "Write a summary. Format should be a X (formerly Twitter) post. 50 words or less. Use emojis. Do not provide your answer (e.g., Certainly). Provide only the summary. Do not provide an explanation. ";
       platformValue = "X";
     } else if (blogRef.current?.checked) {
-      promptValue = "Write a summary with details. Format should be a blog post. Divide sections with subtitles. Do not provide your answer but the summary. Do not provide an explanation. Do not provide a summary.";
+      promptValue = "Write a summary with details. Format should be a blog post. Divide sections with subtitles. Do not provide your answer (e.g., Certainly). Provide only the summary. Do not provide an explanation. ";
       platformValue = "Blog";
     } else if (textRadioRef.current?.checked) {
       const inputValue = textAreaRef.current?.value.trim();
