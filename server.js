@@ -104,14 +104,13 @@ app.post("/videos/:videoId/generate", async (request, response, next) => {
       method: "POST",
       url: `${API_BASE_URL}/generate`,
       headers: { ...HEADERS, accept: "application/json" },
-      data: { ...prompt, video_id: videoId },
+      data: { ...prompt, video_id: videoId, temperature: 0.3 },
     };
     const apiResponse = await axios.request(options);
     response.json(apiResponse.data);
   } catch (error) {
     const status = error.response?.status || 500;
-    const message =
-      error.response?.data?.message || "Error Generating Text";
+    const message = error.response?.data?.message || "Error Generating Text";
     return next({ status, message });
   }
 });
@@ -150,8 +149,7 @@ app.post(
       response.json(apiResponse.data);
     } catch (error) {
       const status = error.response?.status || 500;
-      const message =
-        error.response?.data?.message || "Error indexing a Video";
+      const message = error.response?.data?.message || "Error indexing a Video";
       return next({ status, message });
     }
   }
