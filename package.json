@@ -15,10 +15,12 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.5.1",
+    "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "https-browserify": "^1.0.0",
     "istanbul-lib-coverage": "^3.2.2",
     "multer": "^1.4.5-lts.1",
@@ -63,8 +65,8 @@
     ]
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.12.19",
+    "@cypress/code-coverage": "^3.12.39",
     "babel-plugin-istanbul": "^6.1.1",
-    "cypress": "^13.7.0"
+    "cypress": "^13.11.0"
   }
 }
