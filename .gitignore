@@ -7,9 +7,9 @@
 
 # testing
 /coverage
-cypress/downloads
-cypress/fixtures
-cypress/support
+/cypress
+/.nyc_output
+cypress.config.js
 
 # production
 /build
