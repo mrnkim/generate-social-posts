@@ -36,7 +36,7 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
 
 1. Click the button below and fork the repl
 
-   [![Run on Replit](https://replit.com/badge/github/mrnkim/generate-social-posts)](https://replit.com/github/mrnkim/generate-social-posts)
+   [![Run on Replit](https://replit.com/badge/github/mrnkim/generate-social-posts)](https://replit.com/new/github/mrnkim/generate-social-posts)
 
 2. Update Secrets (equivalent to .env)
 
