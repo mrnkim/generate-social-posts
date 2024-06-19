@@ -38,7 +38,7 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
 
    [![Run on Replit](https://replit.com/badge/github/mrnkim/generate-social-posts)](https://replit.com/new/github/mrnkim/generate-social-posts)
 
-2. Update Secrets (equivalent to .env)
+2. Add Secrets (equivalent to .env), which is located in the Tools pane
 
    ```
    REACT_APP_API_KEY=<YOUR API KEY>
