@@ -17,7 +17,7 @@ import ErrorFallback from "./common/ErrorFallback";
  */
 
 function App() {
-  const { data: videos, refetch: refetchVideos } = useGetVideos(apiConfig.INDEX_ID);
+  const { data: videos, refetch: refetchVideos, isLoading, isError, error } = useGetVideos(apiConfig.INDEX_ID);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -30,17 +30,26 @@ function App() {
     return <ErrorFallback error={new Error("Please provide index Id")} />;
   }
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <ErrorFallback error={error} />;
+  }
+
   return (
     <ErrorBoundary>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="app">
-          {!videos?.data && <ErrorFallback error={videos} />}
-          {videos?.data && (
+          {videos?.data ? (
             <GenerateSocialPosts
               index={apiConfig.INDEX_ID}
               videoId={videos.data[0]?._id || null}
               refetchVideos={refetchVideos}
             />
+          ) : (
+            <ErrorFallback error={new Error("No videos data available")} />
           )}
         </div>
       </Suspense>

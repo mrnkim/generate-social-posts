@@ -81,6 +81,8 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
       <h1 className="GenerateSocialPosts__appTitle">
         Generate Social Posts for Your Video
       </h1>
+      <ErrorBoundary>
+      {isLoading && <LoadingSpinner />}
       <VideoFileUploadForm
         index={index}
         refetchVideos={refetchVideos}
@@ -89,7 +91,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
         isFileUploading={isFileUploading}
         setIsFileUploading={setIsFileUploading}
       />
-      {!video && (
+      {!isLoading && !video && (
         <div className="GenerateSocialPosts__uploadMessageWrapper">
           <img
             className="GenerateSocialPosts__uploadMessageWrapper__warningIcon"
@@ -105,8 +107,6 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
       )}
       {!isFileUploading && (
         <>
-          <ErrorBoundary>
-            {isLoading && <LoadingSpinner />}
             {video && (
               <Video
                 url={video.hls?.video_url}
@@ -114,7 +114,6 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
                 height={"214px"}
               />
             )}
-          </ErrorBoundary>
           {showVideoTitle && (
             <div className="GenerateSocialPosts__videoTitle">
               {vidTitleClean}
@@ -135,6 +134,7 @@ export const GenerateSocialPosts:React.FC<GenerateSocialPostsProps> = ({ index, 
           )}
         </>
       )}
+   </ErrorBoundary>
     </div>
   );
 }
