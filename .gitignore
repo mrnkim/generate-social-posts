@@ -10,6 +10,7 @@
 /cypress
 /.nyc_output
 cypress.config.js
+/instrumented
 
 # production
 /build
