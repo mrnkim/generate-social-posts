@@ -96,15 +96,15 @@ app.get(
 );
 
 /** Generate open-ended text of a video */
-app.post("/videos/:videoId/generate", async (request, response, next) => {
+app.post("/videos/:videoId/analyze", async (request, response, next) => {
   const videoId = request.params.videoId;
   let prompt = request.body.data;
   try {
     const options = {
       method: "POST",
-      url: `${API_BASE_URL}/generate`,
+      url: `${API_BASE_URL}/analyze`,
       headers: { ...HEADERS, accept: "application/json" },
-      data: { ...prompt, video_id: videoId, temperature: 0.3 },
+      data: { ...prompt, video_id: videoId, temperature: 0.3, stream: false },
     };
     const apiResponse = await axios.request(options);
     response.json(apiResponse.data);

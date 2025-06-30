@@ -49,16 +49,16 @@ export function useGetVideo(indexId: string, videoId: string, enabled: boolean) 
   });
 }
 
-export function useGenerate(prompt: string, videoId: string, enabled: boolean) {
+export function useAnalyze(prompt: string, videoId: string, enabled: boolean) {
   return useQuery({
-    queryKey: [keys.VIDEOS, "generate", videoId, prompt],
+    queryKey: [keys.VIDEOS, "analyze", videoId, prompt],
     queryFn: async () => {
       if (!enabled) {
         return null;
       }
 
       const response = await apiConfig.SERVER.post(
-        `/videos/${videoId}/generate`,
+        `/videos/${videoId}/analyze`,
         {
           data: { prompt: prompt },
         }

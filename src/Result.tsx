@@ -1,7 +1,7 @@
 import  React, { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import "./Result.css";
-import { useGenerate } from "./common/apiHooks";
+import { useAnalyze } from "./common/apiHooks";
 import { keys } from "./common/keys";
 import { ErrorBoundary } from "./common/ErrorBoundary";
 import LoadingSpinner from "./common/LoadingSpinner";
@@ -26,7 +26,7 @@ export const Result: React.FC<ResultProps> = ({ video, isSubmitted, setIsSubmitt
     data: result,
     isLoading,
     isFetching,
-  } = useGenerate(
+  } = useAnalyze(
     prompt,
     video?._id,
     Boolean(video?._id && prompt?.length > 0 && isSubmitted)
