@@ -32,6 +32,10 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
 
 - Upon signing up, you'll receive free credits to index up to 10 hours of video content!
 
+### Step 2. Create Index and upload/index a video
+
+- You'll need Index ID for the next step
+
 ### Step 2. Start the App Locally
 
 1. Clone the current repo
@@ -46,7 +50,7 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
     REACT_APP_API_KEY=<YOUR_API_KEY>
     REACT_APP_INDEX_ID=<YOUR_INDEX_ID>
     REACT_APP_SERVER_URL=<YOUR_SERVER_URL> //e.g., http://localhost
-    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> //e.g., 4001
+    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> //e.g., 4001 (4001 by default)
    ```
 
 3. Start the server
