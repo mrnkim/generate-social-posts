@@ -6,7 +6,7 @@
 
 Use this app to effortlessly create social media posts of any type from short, fun Instagram updates to in-depth blog posts loaded with details. As a video content creator, you may already have fantastic video content. With this app, you can swiftly transform it into written content suitable for various social media platforms!
 
-📌 Check out the [Demo](https://generate-social-posts-vercel-client.vercel.app/)! (_Note: This simplified version of the app does not include the video upload form_)
+📌 Check out the [Demo](https://generate-social-posts-vercel-client.vercel.app/)! (_Note: This demo does not include the video upload form_)
 
 <div align="center">
   <a href="https://generate-social-posts-vercel-client.vercel.app/">
@@ -36,7 +36,7 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
 
 - You'll need Index ID for the next step
 
-### Step 2. Start the App Locally
+### Step 3. Start the App Locally
 
 1. Clone the current repo
 
@@ -49,8 +49,8 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
    ```
     REACT_APP_API_KEY=<YOUR_API_KEY>
     REACT_APP_INDEX_ID=<YOUR_INDEX_ID>
-    REACT_APP_SERVER_URL=<YOUR_SERVER_URL> //e.g., http://localhost
-    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> //e.g., 4001 (4001 by default)
+    REACT_APP_SERVER_URL=<YOUR_SERVER_URL> # e.g., http://localhost
+    REACT_APP_PORT_NUMBER=<YOUR_PORT_NUMBER> # e.g., 4001 (4001 by default)
    ```
 
 3. Start the server
