@@ -32,22 +32,7 @@ Visit [Twelve Labs Playground](https://playground.twelvelabs.io/) to generate yo
 
 - Upon signing up, you'll receive free credits to index up to 10 hours of video content!
 
-### Step 2 (Option 1). Start the App on Replit
-
-1. Click the button below
-
-   [![Run on Replit](https://replit.com/badge/github/mrnkim/generate-social-posts)](https://replit.com/new/github/mrnkim/generate-social-posts)
-
-2. Add Secrets (equivalent to .env), which is located in the Tools pane
-
-   ```
-   REACT_APP_API_KEY=<YOUR API KEY>
-   REACT_APP_INDEX_ID=<YOUR INDEX ID>
-   ```
-
-3. Run the Repl
-
-### Step 2 (Option 2). Start the App Locally
+### Step 2. Start the App Locally
 
 1. Clone the current repo
 
